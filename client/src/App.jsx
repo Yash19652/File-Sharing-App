@@ -1,22 +1,28 @@
-import React from 'react'
-import "./App.css"
+import React from "react";
+import "./App.css";
+import { useRef } from "react";
 
 function App() {
+  const fileInputRef = useRef();
+
+  const onUploadClick = () => {
+    fileInputRef.current.click();
+  };
   return (
     <>
-    <div className="main-wrapper" >
-      <div className="container">
-        <div className="wrapper">
-          <h1>File Sharing App</h1>
-          <p>Upload And Share The Download Link</p>
+      <div className="main-wrapper">
+        <div className="container">
+          <div className="wrapper">
+            <h1>File Sharing App</h1>
+            <p>Upload And Share The Download Link</p>
 
-          <button>Upload</button>
-          <input type='file'></input>
+            <button onClick={() => onUploadClick()}>Upload</button>
+            <input type="file" ref={fileInputRef}></input>
+          </div>
         </div>
       </div>
-    </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
