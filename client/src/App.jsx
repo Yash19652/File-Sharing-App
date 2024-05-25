@@ -1,11 +1,28 @@
 import React from "react";
 import "./App.css";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { uploadFile } from "./services/api";
 
 function App() {
   const fileInputRef = useRef();
   const [file, setFile] = useState("");
   console.log(file);
+
+  useEffect(() => {
+    const getImage = async () => {
+      if(file)
+        {
+          const data = new FormData();
+          data.append("name",file.name);
+          data.append("file",file);
+
+          const response = await uploadFile(data);
+          console.log("response",response);
+        }
+    };
+    getImage();
+  }, [file]);
+
   const onUploadClick = () => {
     fileInputRef.current.click();
   };
