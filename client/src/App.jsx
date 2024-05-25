@@ -17,7 +17,7 @@ function App() {
             <p>Upload And Share The Download Link</p>
 
             <button onClick={() => onUploadClick()}>Upload</button>
-            <input type="file" ref={fileInputRef}></input>
+            <input type="file" ref={fileInputRef} style={{display: "none"}}></input>
           </div>
         </div>
       </div>
