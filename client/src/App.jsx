@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function App() {
   const fileInputRef = useRef();
-
+  const [file, setFile] = useState("");
+  console.log(file);
   const onUploadClick = () => {
     fileInputRef.current.click();
   };
@@ -17,7 +18,12 @@ function App() {
             <p>Upload And Share The Download Link</p>
 
             <button onClick={() => onUploadClick()}>Upload</button>
-            <input type="file" ref={fileInputRef} style={{display: "none"}}></input>
+            <input
+              type="file"
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              onChange={(e) => setFile(e.target.files[0])}
+            />
           </div>
         </div>
       </div>
