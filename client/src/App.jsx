@@ -6,6 +6,7 @@ import { uploadFile } from "./services/api";
 function App() {
   const fileInputRef = useRef();
   const [file, setFile] = useState("");
+  const [output,setOutput] = useState("");
   console.log(file);
 
   useEffect(() => {
@@ -17,7 +18,7 @@ function App() {
           data.append("file",file);
 
           const response = await uploadFile(data);
-          console.log("response",response);
+          setOutput(response.path);
         }
     };
     getImage();
@@ -41,6 +42,7 @@ function App() {
               style={{ display: "none" }}
               onChange={(e) => setFile(e.target.files[0])}
             />
+            {output ? <a href={output}>Click here to download</a> : " "}
           </div>
         </div>
       </div>

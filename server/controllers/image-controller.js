@@ -14,10 +14,25 @@ uploadImage = async (req, res) => {
       .status(500)
       .json({
         message:
-          "error in uploading image to database (in upladImage function in backend)",
+          "error in uploading image to database (in uploadImage function in backend)",
         error: error.message,
       });
   }
 };
 
-module.exports = uploadImage;
+getImage = async (req, res) => {
+  try {
+    const file = await File.findById(req.params.fileId) //fileId in routes
+
+    file.downloadCount++;
+    await file.save();
+
+    res.download(file.path,file.name);
+    // res has a function called download to download from an image(media) from given path and given name
+    
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = {uploadImage,getImage};
